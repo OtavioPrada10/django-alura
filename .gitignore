@@ -1,0 +1,37 @@
+# Arquivos de byte compilado Python
+__pycache__/
+
+# Arquivos de cache do sistema operacional
+.DS_Store
+
+# Arquivos de ambiente virtual
+venv/
+env/
+
+# Arquivos de configuração de IDEs
+.idea/
+.vscode/
+
+# Arquivos de logs
+*.log
+
+# Arquivos de saída de teste
+test_output/
+
+# Arquivos de dependências
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivo de registro de erros do Python
+error.log
+
+# Arquivos gerados por ferramentas de construção
+/build/
+
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+
+# Arquivos de configuração específicos do usuário
+*.sublime-project
+*.sublime-workspace
