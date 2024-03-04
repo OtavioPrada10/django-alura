@@ -1,28 +1,32 @@
 from rest_framework import serializers
 from escola.models import Aluno, Curso, Matricula
 
-class alunoSerializer(serializers.ModelSerializer):
-    class Meta: 
+class AlunoSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Aluno
         fields = ['id', 'nome', 'rg', 'cpf', 'data_nascimento']
 
-class cursoSerializer(serializers.ModelSerializer):
+class CursoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Curso
         fields = '__all__'
 
-class matriculaSerializer(serializers.ModelSerializer):
+class MatriculaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matricula
-        fields = []
+        exclude = []
 
-class listaMatriculasAluno(serializers.ModelSerializer):
+class ListaMatriculasAlunoSerializer(serializers.ModelSerializer):
+    curso = serializers.ReadOnlyField(source='curso.descricao')
+    periodo = serializers.SerializerMethodField()
     class Meta:
         model = Matricula
         fields = ['curso', 'periodo']
+    def get_periodo(self, obj):
+        return obj.get_periodo_display()
 
-class ListaAlunosMatriculadosEmUmCursoSerializer(serializers.ModelSerializer):
-    aluno_nome = serializers.ReadOnlyField(source='alunos.nome')
+class ListaAlunosMatriculadosSerializer(serializers.ModelSerializer):
+    aluno_nome = serializers.ReadOnlyField(source='aluno.nome')
     class Meta:
         model = Matricula
         fields = ['aluno_nome']
